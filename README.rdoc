@@ -1,17 +1,10 @@
 = knapsack
 
-Description goes here.
+This is a set of implementations for Knapsack-related problems
+based on "Knapsack Problems" by Silvano Martello and Paolo Toth,
+available from http://www.or.deis.unibo.it/knapsack.html
 
-== Note on Patches/Pull Requests
- 
-* Fork the project.
-* Make your feature addition or bug fix.
-* Add tests for it. This is important so I don't break it in a
-  future version unintentionally.
-* Commit, do not mess with rakefile, version, or history.
-  (if you want to have your own version, that is fine but
-   bump version in a commit by itself I can ignore when I pull)
-* Send me a pull request. Bonus points for topic branches.
+See the tests for details on how to run use the gem.
 
 == Copyright
 
