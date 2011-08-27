@@ -6,7 +6,7 @@ begin
   Jeweler::Tasks.new do |gem|
     gem.name = "knapsack"
     gem.summary = %Q{Knapsack Algorithms in Ruby}
-    gem.description = %Q{TODO: longer description of your gem}
+    gem.description = %Q{Knapsack Algorithms based on Martello and Toth}
     gem.email = "steven.jenkins@gmail.com"
     gem.homepage = "http://github.com/stevenjenkins/knapsack"
     gem.authors = ["Steven Jenkins"]
