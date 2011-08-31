@@ -40,11 +40,11 @@ class Knapsack
   end
 
   def sum_profits
-    @items.map {|i| i.p}.reduce(0) {|sum,value| sum + value}
+    @items.map {|i| i.p}.reduce(:+)
   end
 
   def sum_weights
-    @items.map {|i| i.w}.reduce(0) {|sum,value| sum + value}
+    @items.map {|i| i.w}.reduce(:+)
   end
 
   # Upper bound on z(KP), from p.17; equation 2.10
