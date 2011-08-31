@@ -19,11 +19,20 @@ class Knapsack
     p.each_with_index do |profit, index|
       @items << Item.new(profit, w[index])
     end
+
     s_accumulator = 0
-    @s = @items.take_while do |item|
+    partitions = @items.partition do |item|
       s_accumulator = s_accumulator + item.w
       s_accumulator <= @c
-    end.length + 1 # add 1 since 1-based indexing for the algorithms
+    end
+    # We use this next value in several places, but Martello and
+    # Toth don't give it a name.  Thus I'll call it 'fitting weights'
+    # because they are the weights that fit into the knapsack.
+    @fitting_weights = partitions[0]
+    # The complement of @fitting_weights is @remaining_weights
+    @remaining_weights = partitions[1]
+    # Martello and Toth do name @s, but we add 1 as they use 1-based indexing
+    @s = @fitting_weights.length + 1
     self
   end
 
