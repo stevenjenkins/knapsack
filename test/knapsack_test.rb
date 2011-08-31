@@ -22,6 +22,13 @@ class KnapsackTest < Test::Unit::TestCase
     # Since c is 50, the first item that doesn't fit is 20, which has index 3
     # Keep in mind that Martello and Toth use 1-based indexing, not 0-based.
     assert_equal(kp.s, 3)
+
+    # c_bar = c - sum of weights that fit, i.e., 50 - (31 + 10) = 9
+    assert_equal(kp.c_bar, 9)
+
+    # U_1 = 70 + 20 + floor(9 * 39 / 20) = 90 + 17 = 107
+    # Don't forget that U_1 is about summing the profits, not the weights.
+    assert_equal(kp.U_1, 107)
   end
 end
 

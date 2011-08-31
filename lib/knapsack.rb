@@ -26,18 +26,23 @@ class Knapsack
       s_accumulator <= @c
     end
     # We use this next value in several places, but Martello and
-    # Toth don't give it a name.  Thus I'll call it 'fitting weights'
-    # because they are the weights that fit into the knapsack.
-    @fitting_weights = partitions[0]
-    # The complement of @fitting_weights is @remaining_weights
-    @remaining_weights = partitions[1]
+    # Toth don't give it a name.  Thus I'll call it 'fitting items'
+    # because they are the items whose weights that fit into the knapsack.
+    @fitting_items = partitions[0]
+    # The complement of @fitting_items is @remaining_items
+    @remaining_items = partitions[1]
     # Martello and Toth do name @s, but we add 1 as they use 1-based indexing
-    @s = @fitting_weights.length + 1
+    @s = @fitting_items.length + 1
+    @c_bar = @c - @fitting_items.map {|i| i.w}.reduce(:+)
     self
   end
 
   def p(j)
-    item[p][j]
+    @items[j].p
+  end
+
+  def w(j)
+    @items[j].w
   end
 
   def sum_profits
@@ -50,6 +55,11 @@ class Knapsack
 
   # Upper bound on z(KP), from p.17; equation 2.10
   def U_1
+    # We don't need to take the floor of the second term
+    # because Ruby is doing Integer arithmetic for us,
+    # but we do need to convert back to zero-based indexing
+    @fitting_items.map {|i| i.p}.reduce(:+) + @c_bar * p(@s-1) / w(@s-1)
+#    @fitting_items.map {|i| i.p}.reduce(:+)
   end
 end
 
