@@ -19,6 +19,9 @@ class KnapsackTest < Test::Unit::TestCase
     # Ensure we didn't drop any profits or weights
     assert_equal(kp.sum_profits, p.reduce(0){|sum,item| sum + item })
     assert_equal(kp.sum_weights, w.reduce(0){|sum,item| sum + item })
+    # Since c is 50, the first item that doesn't fit is 20, which has index 3
+    # Keep in mind that Martello and Toth use 1-based indexing, not 0-based.
+    assert_equal(kp.s, 3)
   end
 end
 

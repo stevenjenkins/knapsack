@@ -11,6 +11,7 @@ class Knapsack
   # N.B.  On my system in Ruby 1.8.7, 2**62 is a Bignum but 2**61 is a Fixnum.
   INF = 2**61
   attr_accessor :n, :c, :items
+  attr_reader :s, :c_bar
 
   # We don't do error checking on the Knapsack creation
   # because there may be recursion in various algorithms
@@ -26,6 +27,11 @@ class Knapsack
     p.each_with_index do |profit, index|
       @items << Item.new(profit, w[index])
     end
+    s_accumulator = 0
+    @s = @items.take_while do |item|
+      s_accumulator = s_accumulator + item.w
+      s_accumulator <= @c
+    end.length + 1 # add 1 since 1-based indexing for the algorithms
     self
   end
 
@@ -39,6 +45,10 @@ class Knapsack
 
   def sum_weights
     @items.map {|i| i.w}.reduce(0) {|sum,value| sum + value}
+  end
+
+  # Upper bound on z(KP), from p.17; equation 2.10
+  def U_1
   end
 end
 
