@@ -3,6 +3,9 @@ require 'test_helper'
 class KnapsackTest < Test::Unit::TestCase
   def test_knapsack_creation
     n = 7
+    # Most algorithms assume that profits and weights are not
+    # in random order but  must be sorted in decreasing 'density',
+    # where 'density = p_i/w_i.
     p = [70, 20, 39]
     w = [31, 10, 20]
     c = 50
